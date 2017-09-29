@@ -11,4 +11,16 @@ export class InfoPage {
 
   }
 
+  buttonAction(event) {
+    var isError = true;
+    if (isError) {
+      this.generateError();
+    }
+    console.log(event);
+  }
+
+  generateError() {
+    var errorMsg = "User generated error 2";
+    throw errorMsg;
+  }
 }

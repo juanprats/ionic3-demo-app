@@ -12,6 +12,14 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+declare var window;
+
+export class CustomErrorHandler implements ErrorHandler {
+  handleError(err: any): void {
+    window.Ionic.handleNewError(err);
+  }
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,7 +45,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: CustomErrorHandler}
   ]
 })
 export class AppModule {}
